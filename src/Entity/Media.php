@@ -70,13 +70,10 @@ class Media
     public function setLink(string $link): self
     {
         if (in_array($string, SELF::MEDIATYPES)) {
-            $this->link = $link;
-
-            return $this;
-        } else {
-            // ???
+            $this->link = $link; 
         }
 
+        return $this;
     }
 
     public function getType(): ?string

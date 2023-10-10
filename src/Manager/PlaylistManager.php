@@ -109,23 +109,9 @@ class PlaylistManager
 
 
     public function getBySongAndUser(User $user, Song $song) {
-        //dd($this->playlistRepository->findAll());
         $p = $this->playlistRepository->getBySongAndUser($user, $song);
-        /*$playlist = $this->playlistRepository->getBySong($p);
-        dd($playlist[0]->getSongs()->getKeys());
-        foreach( $playlist as $line) {
-            dd($line->getSongs()->getValues());
-        }
-        dd($playlist);*/
-        // $playlists = [];
-        // foreach ($p as $line) {
-        //     $playlists[] = $this->playlistRepository->findOneBy(['id' => $line->getId()]);
-        // }
 
-        //$playlists = $this->playlistRepository->findBy(['id' => $p]);
-        //dd($playlists);
         return $p;
-        //return $this->playlistRepository->findBy(['user' => $user, 'songs' => $song]);
     }
 
 }
