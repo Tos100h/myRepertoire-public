@@ -1,0 +1,126 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Song{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="row header">
+            <div class="col-3 offset-lg-1 col-lg-2">
+                {{ include('common/header.html.twig', {'class': 'bi-music-note-beamed header-icon'}) }}
+            </div>
+            <div class="col-6 align-self-center text-center">
+                <h1>                    
+                    <strong>{{ song.name }}</strong>
+                </h1> 
+                {% if song.originalName is not null %}
+                    <h3>({{song.originalName}})</h3>
+                {% endif %}
+                <a href="#links" class="custom-link">  
+                    <h5>{{ media|length }} link{% if media|length > 1 %}s{% endif %}
+                    <i class="bi bi-link-45deg"></i></h5>
+                </a>
+                {% if app.user %}
+                    <a href="#playlists" class="custom-link"> 
+                        <h5>{{ playlists|length }} playlist{% if playlists|length > 1 %}s{% endif %}
+                        <i class="bi bi-music-note-list"></i></h5>
+                    </a>
+                {% endif %}
+            </div>
+            <div class="col-3 offset-lg-1 col-lg-2 align-self-center">
+                {% if app.user %}
+                    <a href="{{ path('app_song_edit', {'id': song.id}) }}" title="Edit song" class="btn custom-btn me-2">
+                        <span class="hide-on-mobile">Edit</span>
+                        <i class="bi bi-pencil-square text-light"></i>
+                    </a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <hr class="content-hr-primary">
+        </div>
+
+        <div class="d-flex justify-content-center mt-3 flex-column text-center">
+            <div>
+                <h3><u>Soundtrack of</u><h3>
+                <h5>
+                    {% if song.ost is not null %}
+                        <div class="custom-link">            
+                            <a href="{{ path('app_search_navbar', {'search': song.ost}) }}" class="custom-link">{{ song.ost }}</a>                    
+                        </div>
+                    {% else %}
+                        <div>-</div>
+                    {% endif %}
+                </h5>
+            </div>
+
+            <h3 class="mt-3"><u>Artists</u></h3>
+            <div class="custom-link">
+                <h5>
+                {% for artist in song.artists %}
+                    <a href="{{ path('app_artist_show', {'id': artist.id}) }}">
+                        {{ artist.name }} {% if artist.originalName %}({{ artist.originalName }}){% endif %}
+                    </a>
+                    {% if loop.last != true %}, {% endif %}                 
+                {% else %}
+                    -
+                {% endfor %}
+                </h5>            
+            </div>
+
+            <h3 class="mt-3"><u>Tags</u></h3>
+            <div class="custom-link">
+                <h5>
+                {% for tag in song.tags %}
+                    <a href="{{ path('app_tag_show', {'id': tag.id}) }}">
+                        {{ tag.name }}
+                    </a>
+                    {% if loop.last != true %}, {% endif %}                 
+                {% else %}
+                    -
+                {% endfor %}
+                </h5>            
+            </div>
+                
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <hr class="content-hr-primary">
+        </div>
+
+        <div id="links">
+            <div class="row">
+                <div class="offset-3 col-6 text-center align-middle">
+                    <h3>Media</h3>
+                </div>
+                <div class="col-3 text-center align-middle">
+                    <a href="{{ path('app_media_new', {'song': song.id}) }}" class="btn custom-btn me-2">
+                        <span class="hide-on-mobile">Add a media </span>
+                        <i class="bi bi-plus-circle"></i>
+                    </a>
+                </div>
+            </div>
+            {{ include('song/_media_table.html.twig', {'media': media}) }}
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <hr class="content-hr-primary">
+        </div>
+
+        {% if app.user %}
+            {{ include('song/_playlists_table.html.twig', {'playlists': playlists}) }}
+        {% endif %}
+
+
+        <div class="mt-3 mb-5 d-flex align-items-center flex-column">
+            <a href="{{ path('app_song_index') }}" class="back-button mt-1">
+                <i class="bi bi-arrow-left-circle"></i> back to songs list
+            </a>
+        </div>
+
+    </div>
+
+
+
+    
+{% endblock %}

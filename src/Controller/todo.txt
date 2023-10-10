@@ -1,0 +1,88 @@
+responsive
+burger
+erreur de routes
+remenber me ?
+
+refaire mediaManager
+
+
+Typer les retours de fonction
+
+Paginator -> manager
+twig getTotalItemCount
+
+
+PlaylistSelectorType
+user
+
+search/more media=>links
+
+check les methodes des repo
+
+ASSERT
+
+Voter
+
+_____________________
+
+changer les fonctions de set roles dans le controller (penser a mettre un check sur les roles (tableau en constante par ex ?))
+    Et le request ???
+
+check media setType
+
+Manager dans un construct du controller
+
+revoir les get post dans les routes
+
+refaire les forms avec types et des contranintes
+
+tu pourrais mettre $event->setResponse() un seule fois après tous les if,
+ou bien, metre "return;" après chaque $event->setResponse, comme ça tu ne passes pas dans tous les if si le 1er est le bon
+
+comment dans le onflush
+
+get songs a migrer de artistManager à songManager ??
+
+retour a la ligne en fin de fichier ???
+__________________
+
+https://symfony.com/bundles/ux-autocomplete/current/index.html
+->artists on song
+->edit songs on playlist
+    -> add songs on playlist ?
+
+
+
+
+bg: #3e5070
+
+text : white
+icon & main text : lightskyblue
+buttons : #007FFF
+
+:hover: #EE8687
+
+table bg :
+head: #1D2023
+odd: #263552
+even: #16223d
+
+
+
+
+
+
+<i class="bi bi-music-note-beamed"></i>
+
+<i class="bi bi-music-note-list"></i>
+
+<i class="bi bi-tag"></i>
+
+<i class="bi bi-link-45deg"></i>
+<i class="bi bi-play-btn-fill"></i>
+
+<i class="bi bi-house-door-fill"></i>
+
+
+
+

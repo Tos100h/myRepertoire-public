@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello HomeController!{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="row header">
+            <div class="col-3 offset-lg-1 col-lg-2">
+                {{ include('common/header.html.twig', {'class': 'bi-house-door-fill header-icon'}) }}
+            </div>
+            <div class="col-6 align-self-center text-center">
+                <h1>Home</h1>
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center flex-column">
+            <hr class="content-hr-primary">
+        </div>
+
+        <div class="d-flex align-items-center flex-column">
+            <p>Welcome to this website<p>
+            <p><a class="btn custom-btn" href="{{ path('app_song_index') }}">
+                view Songs
+                <i class="bi bi-music-note-beamed"></i>
+            </a></p>
+            <p><a class="btn custom-btn" href="{{ path('app_artist_index') }}">
+                view Artists
+                <i class="bi bi-mic"></i> 
+            </a></p>                
+            <p><a class="btn custom-btn" href="{{ path('app_tag_index') }}">
+                view Tags
+                <i class="bi bi-tag"></i>
+            </a></p>
+            {% if app.user %}  
+                <p><a class="btn custom-btn" href="{{ path('app_playlist_index') }}">
+                    view playlists
+                    <i class="bi bi-music-note-list"></i>
+                </a></p>
+            {% endif %}
+            {% if  app.user is not null and 'ROLE_ADMIN' in app.user.roles %}  
+                <p><a class="btn custom-delete-btn" href="{{ path('app_admin') }}">
+                    Admin
+                    <i class="bi bi-person-fill"></i>
+                </a></p>
+            {% endif %}
+            
+        </div>
+
+    </div>
+{% endblock %}

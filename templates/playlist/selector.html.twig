@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Playlist{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="row header">
+            <div class="col-3 offset-lg-1 col-lg-2">
+                {{ include('common/header.html.twig', {'class': 'bi-music-note-list header-icon'}) }}
+            </div>
+            <div class="col-6 align-self-center text-center">
+                <h1>Add "{{ song.name }}" to your Playlists</h1>
+            </div>
+        </div>
+        <div class="mt-3 d-flex align-items-center flex-column">  
+            <a href="{{ path('app_playlist_new') }}"><button class="btn custom-btn">Create new Playlist</button></a>
+            <hr class="content-hr-primary">
+        </div>
+
+        <div class="mt-5 d-flex align-items-center flex-column">
+            {{ form_start(form) }}
+                {{ form_widget(form) }}
+                <div class="mt-4 d-flex justify-content-center ">
+                    <button class="btn custom-btn">
+                        {{ button_label|default('Save') }}
+                    </button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+
+        <div class="mt-3 d-flex align-items-center flex-column">          
+            <a href="{{ path('app_playlist_index') }}" class="back-button mt-1">
+                <i class="bi bi-arrow-left-circle"></i> back to playlist list
+            </a>
+        </div>
+
+    </div>
+        
+{% endblock %}

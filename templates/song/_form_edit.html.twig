@@ -1,0 +1,47 @@
+{{ form_start(form) }}
+
+    <div class="row">
+        <div class="col-12 col-lg-10">
+        
+            <div class="input-group d-flex justify-content-center">
+                <span class="col-2 input-group-text">{{ form_label(form.name) }}</span>
+                <span class="col-6">{{ form_widget(form.name) }}</span>
+            </div>
+
+            <div class="mt-3 input-group d-flex justify-content-center">
+                <span class="col-2 input-group-text">{{ form_label(form.originalName) }}</span>
+                <span class="col-6">{{ form_widget(form.originalName) }}</span>
+            </div>
+
+            <div class="mt-3 input-group d-flex justify-content-center">
+                <span class="col-2 input-group-text">Soundtrack</span>
+                <span class="col-6">{{ form_widget(form.ost) }}</span>
+            </div>
+
+            <div class="mt-3 input-group d-flex justify-content-center">
+                <span class="col-2 input-group-text">{{ form_label(form.artists) }}</span>
+                <span class="col-6 input-group-text">{{ form_widget(form.artists) }}</span>
+            </div>
+
+        </div>
+        <div class="col-12 col-lg-2">
+            <div class="input-group d-flex justify-content-center">
+                <span class="input-group-text" style="width: 300px !important;">{{ form_label(form.tags) }}</span>
+            </div>
+            <br>
+            <div class="d-flex justify-content-center">
+                <span class="d-flex justify-content-center custom-checkbox">{{ form_widget(form.tags) }}</span>
+            </div>
+        </div>
+    </div>
+
+    
+
+        <div class="mt-4 d-flex justify-content-center ">
+            <button class="btn custom-btn">
+                {{ button_label|default('Save') }} {# <i class="bi bi-save"></i> #}
+            </button>
+        </div>
+
+{{ form_end(form) }}
+

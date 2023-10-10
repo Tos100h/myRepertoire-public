@@ -1,0 +1,10 @@
+        {% for media in song.media|filter(v => v.rank == 10 and v.type == 'youtube') %}
+            <a href="{{ media.link }}" target="_blank" class="">
+                <i class="bi bi-youtube i-icon-youtube"></i>
+            </a>
+        {% endfor %}
+        {% for media in song.media|filter(v => v.rank == 10 and v.type == 'musescore') %}
+            <a href="{{ media.link }}" target="_blank" class="svg">
+                <i class="bi bi-file-music-fill i-icon-musescore"></i>
+            </a>
+        {% endfor %}

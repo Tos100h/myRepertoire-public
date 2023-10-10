@@ -1,0 +1,10 @@
+        
+        <a href="{{ media.link }}" target="_blank">
+            {% if media.type == 'youtube' %}
+                <i class="bi bi-youtube i-icon-youtube"></i>          
+            {% elseif media.type == 'musescore' %}
+                <i class="bi bi-file-music-fill i-icon-musescore"></i>
+            {% else %}
+                <i class="bi bi-bookmark-fill i-icon-other"></i>
+            {% endif %}
+        </a>

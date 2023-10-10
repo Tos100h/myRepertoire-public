@@ -1,0 +1,42 @@
+        <table class="table table-striped table-hover custom-table">
+            <thead class="text-center">
+                <tr>
+                    <th>{{ knp_pagination_sortable(artists, 'Name', 'name') }}</th>
+                    <th>nb of songs</th>
+                    {% if app.user %}
+                        <th>Actions</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+                {% for artist in artists %}
+                    <tr class="text-center">
+                        <td class="col-4">
+                            <a href="{{ path('app_artist_show', {'id': artist.id}) }}">
+                                <strong>{{ artist.name }}</strong>
+                                {% if artist.originalName is not null %}
+                                    ({{artist.originalName}})
+                                {% endif %}
+                            </a>
+                        </td>
+                        <td class="col-4">{{ artist.songs|length }}</td>
+                        {% if app.user %}
+                            <td class="col-auto d-flex justify-content-center"> 
+                                <a href="{{ path('app_artist_edit', {'id': artist.id}) }}" title="Edit Artist" class="btn custom-btn me-2">
+                                    <span class="hide-on-mobile">Edit </span>
+                                    <i class="bi bi-pencil-square"></i>
+                                </a>
+                                <a href="{{ path('app_song_new', {'artist': artist.id}) }}" title="Create Song" class="btn custom-btn me-2">
+                                    <span class="hide-on-mobile">Create song </span>
+                                    <i class="bi bi-plus-circle"></i>
+                                </a>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% else %}
+                    <tr>
+                        <td colspan="12" class="text-center"><strong>No records found</strong></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>

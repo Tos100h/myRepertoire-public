@@ -1,0 +1,69 @@
+        <table class="table table-striped table-hover custom-table">
+            <thead class="text-center">
+                <tr>
+                    <th class="hide-on-mobile">Links</th>
+                    <th>
+                        {% if songs.isSorted('name') and songs.direction == 'desc' %}
+                            {{ knp_pagination_sortable(songs, 'Name ↑', 'name', {}, {'direction': 'asc'}) }}
+                        {% else %}
+                            {{ knp_pagination_sortable(songs, 'Name ↓', 'name', {}, {'direction': 'desc'}) }}
+                        {% endif %}      
+                    </th>
+                    <th>Artists</th>
+                    <th class="hide-on-mobile">
+                        Soundtrack
+                    </th>
+                    {% if app.user %}
+                        <th class="hide-on-mobile">Actions</th>
+                    {% endif %}
+                </tr>
+            </thead>
+            <tbody>
+            {% for song in songs %}
+                <tr class="text-center">
+                    <td class="col-1 hide-on-mobile">
+                        {{ include('common/_song_links.html.twig', {'song': song}) }}
+                    </td>
+                    <td class="col-4">
+                        <a href="{{ path('app_song_show', {'id': song.id}) }}">
+                            <strong>{{ song.name }}</strong>
+                            {% if song.originalName is not null %}
+                                ({{song.originalName}})
+                            {% endif %}
+                        </a>
+                    </td>
+                    <td class="col-2">
+                        {% for artist in song.artists %}
+                            <a href="{{ path('app_artist_show', {'id': artist.id}) }}">
+                                {{ artist.name }}
+                            </a><br>
+                        {% endfor %}
+                    </td>
+                    <td class="col-2 hide-on-mobile">
+                        <a href="{{ path('app_search_navbar', {'search': song.ost}) }}">{{ song.ost }}</a>
+                    </td>
+                    {% if app.user %}
+                        <td class="col-auto hide-on-mobile">
+                            <a href="{{ path('app_song_edit', {'id': song.id}) }}" title="Edit song" class="btn custom-btn me-2">
+                                <span class="hide-on-mobile">Edit </span>
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                            <a href="{{ path('app_media_new', {'song': song.id}) }}" title="Add media" class="btn custom-btn me-2">
+                                <span class="hide-on-mobile">Media </span>
+                                <i class="bi bi-plus-circle"></i>
+                            </a>
+                            {% if playlist is null %}
+                                {{ include('common/_playlist_add_btn.html.twig', {'song': song}) }}
+                            {% else %}
+                                {{ include('common/_playlist_remove_btn.html.twig', {'song' : song, 'playlist' : playlist}) }}
+                            {% endif %} 
+                        </td> 
+                    {% endif %}
+                </tr>
+            {% else %}
+                <tr>
+                    <td colspan="12" class="text-center"><strong>No records found</strong></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>

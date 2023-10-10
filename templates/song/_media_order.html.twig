@@ -1,0 +1,10 @@
+        {% if media.rank == 10 and media.type != "other" %}
+            <i class="bi bi-star-fill" title="This link will show on the song index page"></i>
+        {% endif %}
+
+        {% if media.rank != 10 %}
+            <a href="{{ path('app_media_rank', {'media': media.id, 'rank': 1}) }}">
+                <span></span>
+                <i class="bi bi-caret-up-square-fill i-icon-other" title="Set to first place"></i>
+            </a>
+        {% endif %}

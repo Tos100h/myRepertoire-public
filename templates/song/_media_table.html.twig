@@ -1,0 +1,42 @@
+            <table class="table table-striped table-hover custom-table mt-3">
+                <thead class="text-center">
+                    <tr>
+                        <th>Links</th>
+                        <th>Name</th>
+                        <th>Order</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% if media|length > 0 %}
+                        {% for type in types %}
+                            {% for m in media|filter(v => v.type == type) %}
+                                <tr class="text-center">
+                                    <td>
+                                        {{ include('common/_media_icon.html.twig', {'media': m}) }}
+                                    </td>
+                                    <td>
+                                        {{ m.name }}
+                                    </td>
+                                    <td>
+                                        {{ include('song/_media_order.html.twig', {'media': m}) }}
+                                        {# {{m.rank}} #}
+                                    </td>
+                                    <td>
+                                        <a href="{{ path('app_media_edit', {'media': m.id}) }}" title="Edit link" class="btn custom-btn">
+                                            <span class="hide-on-mobile">Edit</span>
+                                            <i class="bi bi-pencil-square"></i>
+                                        </a>
+                                    </td>                           
+                                </tr>
+                            {% endfor %}
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td colspan="12" class="text-center"><strong>No records found</strong></td>
+                        </tr>
+                    {% endif %}
+                </tbody>
+            </table>
+
+            

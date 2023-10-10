@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Song index{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="row header">
+            <div class="col-3 offset-lg-1 col-lg-2">
+                {{ include('common/header.html.twig', {'class': 'bi-music-note-beamed header-icon'}) }}
+            </div>
+            <div class="col-6 align-self-center text-center">
+                <h1>Song index</h1>
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center flex-column">
+            <h5>{{ songs.getTotalItemCount }} songs in database ({{ limit }} per page)</h5>
+            <a href="{{ path('app_song_new') }}" class="btn custom-btn mt-3"><i class="bi bi-plus-circle"></i> Create new song</a>
+            <hr class="content-hr-primary">
+        </div>
+
+        {{ include('common/songs_table.html.twig', {'songs': songs, 'playlist': playlist|default(null)}) }}
+
+        <div class="mt-5">
+            <div class="d-flex justify-content-center">
+                {{ knp_pagination_render(songs) }}
+            </div>
+        </div>
+    </div>   
+{% endblock %}

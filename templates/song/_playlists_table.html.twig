@@ -1,0 +1,58 @@
+            <div id="playlists">       
+                <div class="row">
+                    <div class="offset-3 col-6 text-center align-middle">
+                        <h3>Playlists</h3>
+                    </div>
+                    <div class="col-3 text-center align-middle">
+                        <a href="{{ path('app_song_add_playlist', {'song': song.id}) }}" title="Add song to playlist" class="btn custom-btn">
+                            <span class="hide-on-mobile">Add song to playlist</span>
+                            <i class="bi bi-music-note-list"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <table class="table table-striped table-hover custom-table mt-3">
+                    <thead class="text-center">
+                        <tr>
+                            <th>Name</th>
+                            <th>Nb of songs</th>
+                            <th>Privacy</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% if playlists|length > 0 %}
+                            {% for p in playlists %}
+                                <tr class="text-center">
+                                    <td class="col-3">
+                                        <a href="{{ path('app_playlist_show', {'id': p.id}) }}">{{ p.name }}</a> 
+                                    </td>
+                                    <td class="col-3">
+                                        {{ p.songs|length }}
+                                    </td>
+                                    <td class="col-3">
+                                        {% if p.public == true %}
+                                            <span class="hide-on-mobile">Public </span>
+                                            <i class="bi bi-unlock-fill"></i>
+                                        {% else %}
+                                            <span class="hide-on-mobile">Private </span>
+                                            <i class="bi bi-lock-fill"></i>
+                                        {% endif %}
+                                    </td>
+                                    <td class="col-3">
+                                        <a href="{{ path('app_playlist_remove_song', {'song': song.id, 'playlist': p.id }) }}" title="Remove from playlist" class="btn custom-btn">
+                                            <span class="hide-on-mobile">Remove </span>
+                                            <i class="bi bi-trash"></i>
+                                        </a>
+                                    </td>                               
+                                    
+                                </tr>
+                            {% endfor %}
+                        {% else %}
+                            <tr>
+                                <td colspan="12" class="text-center"><strong>No records found</strong></td>
+                            </tr>
+                        {% endif %}
+                    </tbody>
+                </table>
+            </div>

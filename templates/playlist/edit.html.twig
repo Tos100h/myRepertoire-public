@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Playlist{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="row header">
+            <div class="col-3 offset-lg-1 col-lg-2">
+                {{ include('common/header.html.twig', {'class': 'bi-music-note-list header-icon'}) }}
+            </div>
+            <div class="col-6 align-self-center text-center">
+                <h1>Edit <strong>"{{ playlist.name }}"</strong></h1>
+            </div>
+            <div class="col-3 offset-lg-1 col-lg-2">
+                {{ include('playlist/_delete_form.html.twig') }} 
+            </div>
+        </div>
+
+
+        <div class="d-flex justify-content-center">
+            <hr class="content-hr-primary">
+        </div>
+
+        
+        <div class="custom-form mt-5">
+            {{ include('playlist/_form.html.twig', {'button_label': 'Update'}) }}
+        </div>
+
+        <div class="d-flex justify-content-center">
+            <div class="mt-5">
+                <a href="{{ path('app_playlist_show', {'id': playlist.id }) }}" class="back-button"><i class="bi bi-arrow-left-circle"></i> back to playlist</a>
+            </div>
+        </div>
+
+    </div>
+{% endblock %}

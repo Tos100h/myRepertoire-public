@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+    <div class="content">
+        <div class="row header">
+            <div class="col-3 offset-lg-1 col-lg-2">
+                {{ include('common/header.html.twig', {'class': 'bi-key-fill header-icon'}) }}
+            </div>
+            <div class="col-6 align-self-center text-center">
+                 <h1>reset password for "{{ user }}"</h1>
+            </div>
+        </div>
+
+        <div class="d-flex align-items-center flex-column">
+            <hr class="content-hr-primary">
+        </div>
+    
+        <div class="custom-form mt-5">
+            {{ form_start(form) }}
+                <div class="mt-3 input-group d-flex justify-content-center">
+                    <span class="col-4 col-lg-2 input-group-text">{{ form_label(form.plainPassword.first) }}</span>
+                    <span class="col-6">{{ form_widget(form.plainPassword.first) }}</span>
+                </div>
+                <div class="mt-3 input-group d-flex justify-content-center">
+                    <span class="col-4 col-lg-2 input-group-text">{{ form_label(form.plainPassword.second) }}</span>
+                    <span class="col-6">{{ form_widget(form.plainPassword.second) }}</span>
+                </div>
+
+                <div class="mt-3 d-flex justify-content-center">
+                    <button type="submit" class="btn custom-btn">Save</button>
+                </div>
+            {{ form_end(form) }}
+        </div>
+
+        <div class="mt-3 d-flex align-items-center flex-column">
+            <a href="{{ path('app_admin') }}" class="back-button">
+                <i class="bi bi-arrow-left-circle"></i> back to admin page
+            </a>
+        </div>
+    </div>
+
+{% endblock %}

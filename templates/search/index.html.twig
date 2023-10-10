@@ -1,0 +1,84 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello SearchController!{% endblock %}
+
+{% block body %}
+<div class="content">
+    <div class="row header">
+        <div class="col-3 offset-lg-1 col-lg-2">
+            {{ include('common/header.html.twig', {'class': 'bi-search header-icon'}) }}
+        </div>
+        <div class="col-6 align-self-center text-center">
+            <h1>Results for : "{{ search }}"</h1>
+            <a href="#songs" class="custom-link">  
+                <h5>{{ songs.getTotalItemcount }} Song{% if songs.getTotalItemcount > 1 %}s{% endif %}
+                <i class="bi bi-music-note-beamed"></i></h5>
+            </a>
+            <a href="#artists" class="custom-link"> 
+                <h5>{{ artists.getTotalItemcount }} Artist{% if artists.getTotalItemcount > 1 %}s{% endif %}
+                <i class="bi bi-mic"></i></h5>
+            </a>
+            <a href="#media" class="custom-link"> 
+                <h5>{{ media.getTotalItemcount }} Media
+                <i class="bi bi-link-45deg"></i></h5>
+            </a>
+        </div>
+    </div>
+
+
+    <div class="d-flex align-items-center flex-column">
+        <hr class="content-hr-primary">
+        <h3 id="songs"><u>
+            Songs : 
+        </u></h3>
+    </div>
+
+    {{ include('common/songs_table.html.twig', {'songs': songs, 'playlist': playlist|default(null)}) }}
+
+    <div class="d-flex align-items-center flex-column">
+        {% if songs|length >= limit %}
+            <p>Only {{ limit }} firsts results are shown</p>
+            <a href="{{ path('app_search_navbar_more', {'type': 'songs', 'search' : search}) }}" class="back-button mt-1">
+                See more results
+            </a>
+        {% endif %}
+    </div> 
+
+    <div class="d-flex align-items-center flex-column">
+        <hr class="content-hr-primary">
+        <h3 id="artists"><u>
+            Artists :
+        </u></h3>
+    </div>
+
+    {{ include('common/artists_table.html.twig', {'artists': artists})  }}
+
+    <div class="d-flex align-items-center flex-column">
+        {% if artists|length >= limit %}
+            <p>Only {{ limit }} firsts results are shown</p>
+            <a href="{{ path('app_search_navbar_more', {'type': 'artists', 'search' : search}) }}" class="back-button mt-1">
+                See more results
+            </a>
+        {% endif %}
+    </div> 
+
+    <div class="d-flex align-items-center flex-column">
+        <hr class="content-hr-primary">
+        <h3 id="media"><u>
+            Media :
+        </u></h3>
+    </div>
+
+    {{ include('search/_media_table.html.twig', {'media': media})  }}
+
+    <div class="d-flex align-items-center flex-column mb-5">
+        {% if media|length >= limit %}
+            <p>Only {{ limit }} firsts results are shown</p>
+            <a href="{{ path('app_search_navbar_more', {'type': 'media', 'search' : search}) }}" class="back-button mt-1">
+                See more results
+            </a>
+        {% endif %}
+    </div>
+</div>
+
+{% endblock %}
